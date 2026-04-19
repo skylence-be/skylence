@@ -1,0 +1,95 @@
+name: Bug Report
+description: Report a bug in Skylence
+labels: ['bug']
+body:
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical (crashes, data loss, security)
+        - High (broken feature, no workaround)
+        - Medium (broken feature, has workaround)
+        - Low (cosmetic, minor inconvenience)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of Skylence is affected?
+      options:
+        - CLI (sky run, serve, logs, setup)
+        - Daemon / API
+        - Workflow Engine (.sky parsing, DAG execution)
+        - GitHub Webhooks
+        - WebSocket Streaming
+        - Database / SQLite
+        - Claude CLI Integration
+        - Configuration
+        - Installation / Update
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief description of the bug.
+      placeholder: What went wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal steps to trigger the bug.
+      placeholder: |
+        1. Run `sky serve`
+        2. POST to /webhooks/github with payload...
+        3. Check logs...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      placeholder: What happened instead?
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Skylence Version
+      placeholder: "v0.1.4 or `sky --version` output"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS / Platform
+      placeholder: "macOS 15.3 arm64 / Ubuntu 24.04 x64"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs
+      description: Include any error codes (SKY-XX-NNN), stack traces, or terminal output.
+      render: shell
