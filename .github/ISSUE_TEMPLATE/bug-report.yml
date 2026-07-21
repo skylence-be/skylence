@@ -1,0 +1,92 @@
+name: Bug Report
+description: General fallback — something is broken or behaving unexpectedly
+title: "[bug]: "
+labels: ["bug", "pending triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Wrong template?** Edit or patch corruption → [Editor Issue](?template=editor-issue.yml). MCP tool bugs → [MCP Tool Issue](?template=mcp-tool-issue.yml). LSP problems (definition/references/rename/symbols/diagnostics) → [LSP Issue](?template=lsp-issue.yml). Feature requests → [Feature Request](?template=feature-request.yml).
+        > Issues without a reproduction will be closed automatically after 3 days.
+
+  - type: input
+    id: version
+    attributes:
+      label: Skyline version
+      description: Run `skyline --version` or call `skyline_version`
+      placeholder: "1.0.10"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS (Apple Silicon / arm64)
+        - macOS (Intel / x86_64)
+        - Linux (x86_64)
+        - Linux (arm64)
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install-method
+    attributes:
+      label: Installation method
+      options:
+        - cargo build (from source)
+        - npm @skylence-ai/skyline
+        - GitHub release binary
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly. Include exact error messages and exit codes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: The smallest sequence of commands that reliably triggers the issue.
+      render: shell
+      placeholder: |
+        skyline read src/main.rs
+        skyline edit ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / error output
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have read the [Code of Conduct](https://github.com/skylence-be/.github/blob/main/CODE_OF_CONDUCT.md)
+          required: true
+        - label: I searched existing issues and this is not a duplicate
+          required: true
+        - label: I am on the latest version
+          required: false
