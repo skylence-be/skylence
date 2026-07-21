@@ -1,0 +1,72 @@
+name: Feature Request
+description: Propose a new capability or improvement
+title: "[feat]: "
+labels: ["enhancement", "pending triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Bug?** Use the [Bug Report](?template=bug-report.yml) template instead.
+        > Focus on the *problem* you're solving — the best feature requests describe a pain point. The solution follows from that.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem this solves
+      description: What are you trying to do that skyline currently doesn't support well?
+      placeholder: |
+        When skyline_srewrite rewrites a large directory, there is no way to see which files were
+        changed and which were skipped — the agent has to re-read every file to verify.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you like this to work? Be as specific as you can.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What have you tried? What workarounds exist today?
+    validations:
+      required: false
+
+  - type: textarea
+    id: agent-workflow
+    attributes:
+      label: Agent workflow context
+      description: How would an AI agent use this feature? What task does it unblock or make safer?
+      placeholder: |
+        Claude Code would call skyline_srewrite to refactor all usages, then use the new summary
+        to check only changed files — reducing tool calls by ~80% on large repos.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Would this be a breaking change?
+      options:
+        - "No"
+        - "Yes — existing tool inputs / outputs would change"
+        - "Yes — anchor format or hash semantics would change"
+        - Unsure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have read the [Code of Conduct](https://github.com/skylence-be/.github/blob/main/CODE_OF_CONDUCT.md)
+          required: true
+        - label: I searched existing issues and this has not been requested before
+          required: true
+        - label: I am willing to submit a pull request for this
+          required: false
